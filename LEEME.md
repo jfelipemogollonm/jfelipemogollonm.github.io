@@ -42,6 +42,48 @@ El orden de la lista es el orden en la pantalla. Borra, añade y reordena sin to
 > Instagram no deja incrustar reels desde un sitio propio sin su API, así que lo que se ve
 > es tu propio mp4 (así carga rápido y no depende de ellos) con un enlace al reel original.
 
+## Las galerías de fotos
+
+Aparte del trabajo suelto, el sitio tiene **galerías**: una galería contiene carpetas,
+y cada carpeta contiene fotos. Ahora mismo hay una galería **GSA** con una carpeta
+**Fall Academy**.
+
+Una carpeta por sesión o por evento. Para añadir fotos:
+
+1. Suelta las fotos tal cual salen de la cámara o del teléfono (valen `.heic`) en:
+
+```
+portafolio/media/galerias/gsa/fall-academy/
+```
+
+2. Ejecuta esto una vez:
+
+```bash
+cd "/Users/jfelipemogollon/Desktop/Proyecto edicion autonoma /portafolio" && node bin/galerias.mjs
+```
+
+Eso deja en `web/` una copia ligera de cada foto (lado largo 2000 px) y actualiza
+`galerias.js` con sus medidas. **Los originales no se suben**: se quedan en tu disco,
+el sitio publica solo las copias.
+
+3. Publica:
+
+```bash
+cd "/Users/jfelipemogollon/Desktop/Proyecto edicion autonoma /portafolio" && git add -A && git commit -m "Fotos de Fall Academy" && git push
+```
+
+**Para una galería o carpeta nueva** basta con crear la carpeta y, si quieres que el
+nombre salga bonito, un `nombre.txt` dentro con el nombre en una línea:
+
+```
+media/galerias/gsa/winter-camp/nombre.txt   →  Winter Camp
+media/galerias/bodas/nombre.txt             →  Bodas
+```
+
+Sin `nombre.txt`, el nombre sale del nombre de la carpeta (`winter-camp` → "Winter Camp").
+El orden de las fotos es alfabético, así que si quieres mandar tú el orden, numéralas
+(`01-...jpg`, `02-...jpg`).
+
 ## Preparar los archivos
 
 Los medios de `media/` ahora mismo son **de relleno**: degradados generados para que veas el

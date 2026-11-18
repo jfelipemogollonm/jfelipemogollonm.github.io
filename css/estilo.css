@@ -116,6 +116,36 @@ img,video{display:block;max-width:100%}
 }
 .titulo p{margin-top:.9rem;color:var(--tenue);font-size:.95rem}
 
+/* ═══ galerías ═══════════════════════════════════════════════════ */
+.miga{
+  margin-bottom:1rem;
+  color:var(--tenue);
+}
+.miga a{border-bottom:1px solid transparent}
+.miga a:hover{color:var(--tinta);border-bottom-color:var(--acento)}
+
+/* las tarjetas son más grandes que las piezas y llenan la fila */
+.rejilla.tarjetas::after{content:none}
+.tarjeta{
+  text-decoration:none;
+  flex-basis:calc(var(--r) * var(--fila) * 2);
+  max-height:430px;
+}
+.rotuloTarjeta{
+  position:absolute;left:0;right:0;bottom:0;
+  display:flex;flex-direction:column;gap:.25rem;
+  padding:1.2rem 1.3rem;
+  background:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,.35) 55%,transparent 100%);
+}
+.rotuloTarjeta strong{
+  font-size:1.05rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;
+}
+.rotuloTarjeta span{
+  font-size:.65rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--tenue);
+}
+.tarjeta:hover .rotuloTarjeta strong{color:#fff}
+.tarjeta:hover > img{filter:brightness(.55) saturate(1.05)}
+
 /* ═══ filtros ════════════════════════════════════════════════════ */
 .filtros{
   display:flex;justify-content:center;flex-wrap:wrap;gap:.5rem;

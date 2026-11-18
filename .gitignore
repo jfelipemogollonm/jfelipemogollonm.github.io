@@ -1,1 +1,12 @@
 .DS_Store
+
+# los originales de las galerías se quedan en tu disco:
+# al sitio solo sube la copia ligera de web/
+media/galerias/*/*/*.jpg
+media/galerias/*/*/*.jpeg
+media/galerias/*/*/*.png
+media/galerias/*/*/*.heic
+media/galerias/*/*/*.heif
+media/galerias/*/*/*.webp
+media/galerias/*/*/*.tif
+media/galerias/*/*/*.tiff
