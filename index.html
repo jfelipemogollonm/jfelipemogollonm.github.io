@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Felipe Mogollón</title>
+<meta name="description" content="Portafolio de video y fotografía.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+<header class="puerta">
+  <video id="fondo" autoplay muted loop playsinline></video>
+
+  <div class="centro">
+    <h1 id="nombre"></h1>
+    <p class="oficio" id="oficio"></p>
+  </div>
+
+  <a class="explorar rotulo" href="trabajo.html">Explorar</a>
+
+  <nav class="redes rotulo">
+    <a id="aYoutube" target="_blank" rel="noopener">YouTube</a>
+    <a id="aInstagram" target="_blank" rel="noopener">Instagram</a>
+    <a id="aCorreo">Correo</a>
+  </nav>
+</header>
+
+<script src="contenido.js"></script>
+<script>
+  const C = window.CONTENIDO;
+  document.documentElement.style.setProperty('--acento', C.acento);
+  document.title = C.nombre.replace(/\b\p{Lu}+\b/gu, w => w[0] + w.slice(1).toLowerCase());
+  nombre.textContent = C.nombre;
+  oficio.textContent = C.oficio;
+
+  const v = document.getElementById('fondo');
+  v.poster = C.puerta.poster || '';
+  v.src    = C.puerta.video;
+  // si no hay video todavía, se queda el poster como imagen de fondo
+  v.addEventListener('error', () => {
+    if (!C.puerta.poster) return;
+    const img = document.createElement('img');
+    img.className = 'fondo'; img.src = C.puerta.poster; img.alt = '';
+    v.replaceWith(img);
+  });
+
+  aYoutube.href   = C.enlaces.youtube;
+  aInstagram.href = C.enlaces.instagram;
+  aCorreo.href    = 'mailto:' + C.enlaces.correo;
+</script>
+</body>
+</html>
