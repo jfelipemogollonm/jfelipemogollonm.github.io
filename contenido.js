@@ -17,34 +17,41 @@ window.CONTENIDO = {
     poster: "media/poster/puerta.jpg"   // el primer fotograma, por si el video tarda
   },
 
-  // ── Sobre mí ──────────────────────────────────────────────────
-  sobre: "Edito y grabo. Cuento historias en 16:9 y en 9:16, y las congelo en foto cuando no se dejan mover. Disponible para encargos.",
-
   // ── Enlaces ───────────────────────────────────────────────────
   enlaces: {
-    youtube:   "https://youtube.com/@tucanal",
-    instagram: "https://instagram.com/tuusuario",
-    correo:    "hola@tudominio.com"
+    youtube:   "https://www.youtube.com/@felipemogollonm",
+    instagram: "https://www.instagram.com/felipemogollonm"
   },
 
   // ── El trabajo ────────────────────────────────────────────────
   // tipo "youtube" → id: lo que va después de ?v= en la URL
   // tipo "reel"    → video: un mp4 vertical tuyo + enlace al reel
-  // tipo "foto"    → imagen: el jpg + proporción (ancho/alto)
+  // tipo "foto"    → imagen: el jpg + proporción (ancho ÷ alto)
+  //
+  // El orden de esta lista es el orden en pantalla. Arriba lo mejor.
   piezas: [
 
-    { tipo:"youtube", id:"YE7VzlLtp-4", titulo:"Nombre del video",      nota:"Guion, cámara y edición" },
+    { tipo:"youtube", id:"2wH9a4gUTrI", titulo:"Day in the life of a college soccer player: watching USL 1" },
     { tipo:"foto",    imagen:"media/foto/01.jpg", proporcion:1.5,  titulo:"Retrato" },
-    { tipo:"reel",    video:"media/reels/01.mp4", enlace:"https://instagram.com/reel/xxxx", titulo:"Reel de ejemplo" },
+    { tipo:"reel",    video:"media/reels/01.mp4", enlace:"https://www.instagram.com/felipemogollonm", titulo:"Reel de ejemplo" },
+    { tipo:"youtube", id:"lpdc5l0l8-0", titulo:"A 20 Yrs Old Colombian's Soccer Preseason in the U.S." },
+    { tipo:"youtube", id:"uewRXUHOM04", titulo:"El libro que me cambió la vida" },
     { tipo:"foto",    imagen:"media/foto/02.jpg", proporcion:0.75, titulo:"Vertical" },
-    { tipo:"youtube", id:"YE7VzlLtp-4", titulo:"Otro video",            nota:"Edición y color" },
+    { tipo:"youtube", id:"RYjcn6JMI5o", titulo:"My summer at University of Notre Dame" },
+    { tipo:"youtube", id:"GKuKViUyxz0", titulo:"Así es ser estudiante internacional en Estados Unidos" },
     { tipo:"foto",    imagen:"media/foto/03.jpg", proporcion:1.77, titulo:"Paisaje" },
-    { tipo:"reel",    video:"media/reels/02.mp4", enlace:"https://instagram.com/reel/xxxx", titulo:"Otro reel" },
+    { tipo:"reel",    video:"media/reels/02.mp4", enlace:"https://www.instagram.com/felipemogollonm", titulo:"Otro reel" },
+    { tipo:"youtube", id:"jU0z0GzonwY", titulo:"Me dejé llevar de la rutina..." },
+    { tipo:"youtube", id:"0RA98zzS6vk", titulo:"17 horas para salvar mi proyecto de electrónica" },
     { tipo:"foto",    imagen:"media/foto/04.jpg", proporcion:1.33, titulo:"Calle" },
-    { tipo:"youtube", id:"YE7VzlLtp-4", titulo:"Un tercero",            nota:"Dirección y montaje" },
-    { tipo:"reel",    video:"media/reels/03.mp4", enlace:"https://instagram.com/reel/xxxx", titulo:"Reel vertical" },
+    { tipo:"youtube", id:"SHsSkN7Vh1M", titulo:"5 things to do instead of scrolling (real dopamine)" },
+    { tipo:"reel",    video:"media/reels/03.mp4", enlace:"https://www.instagram.com/felipemogollonm", titulo:"Reel vertical" },
+    { tipo:"youtube", id:"ffbKGgOhyOg", titulo:"Día de partido en la vida de un estudiante internacional" },
     { tipo:"foto",    imagen:"media/foto/05.jpg", proporcion:1.5,  titulo:"Detalle" },
-    { tipo:"foto",    imagen:"media/foto/06.jpg", proporcion:0.8,  titulo:"Contraluz" }
+    { tipo:"youtube", id:"5x5FVa207WI", titulo:"Primer día de pretemporada de un universitario en USA" },
+    { tipo:"youtube", id:"TtZfZpiCq00", titulo:"Así es mi cuarto de verano en la universidad" },
+    { tipo:"foto",    imagen:"media/foto/06.jpg", proporcion:0.8,  titulo:"Contraluz" },
+    { tipo:"youtube", id:"ddwX6TSdANA", titulo:"Un fin de semana en mi vida" }
 
   ]
 };

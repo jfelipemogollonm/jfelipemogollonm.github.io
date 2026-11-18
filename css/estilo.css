@@ -5,7 +5,7 @@
   --fondo2:#1a1a1a;
   --tinta:#f2f2f2;
   --tenue:#8a8a8a;
-  --fila:260px;            /* altura base de cada fila de la rejilla */
+  --fila:200px;            /* altura base de cada fila: más baja = más piezas por fila */
   --hueco:8px;
 }
 
@@ -153,65 +153,56 @@ img,video{display:block;max-width:100%}
   border:0;padding:0;
   font:inherit;color:inherit;text-align:left;
 }
+/* En reposo solo se ve la imagen. Al pasar el ratón se apaga y aparece
+   el título: igual que en la referencia. */
 .pieza > img,.pieza > video{
   width:100%;height:100%;object-fit:cover;
-  transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .4s;
+  transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .4s ease;
 }
-.pieza:hover > img,.pieza:hover > video{transform:scale(1.045)}
+.pieza:hover > img,.pieza:hover > video,
+.pieza:focus-visible > img,.pieza:focus-visible > video{
+  transform:scale(1.06);
+  filter:brightness(.38) saturate(1.1);
+}
 
 .velo{
   position:absolute;inset:0;
   display:flex;flex-direction:column;justify-content:flex-end;
   padding:1.1rem 1.2rem;
-  background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.25) 38%,transparent 65%);
-  opacity:0;transition:opacity .35s;
+  opacity:0;transition:opacity .3s ease;
 }
 .pieza:hover .velo,.pieza:focus-visible .velo{opacity:1}
-.velo h3{font-size:.95rem;font-weight:700;letter-spacing:.01em}
-.velo span{margin-top:.25rem;color:var(--tenue);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase}
-
-.marca{                       /* la etiqueta de arriba a la izquierda */
-  position:absolute;top:.9rem;left:.9rem;
-  padding:.3rem .6rem;
-  border-radius:3px;
-  background:rgba(0,0,0,.55);
-  backdrop-filter:blur(4px);
-  font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-  opacity:.9;
+.velo h3{
+  font-size:.92rem;font-weight:700;line-height:1.3;
+  transform:translateY(8px);
+  transition:transform .4s cubic-bezier(.2,.7,.2,1);
 }
-.marca.yt{background:var(--acento);color:#fff}
+.pieza:hover .velo h3,.pieza:focus-visible .velo h3{transform:none}
+.velo span{margin-top:.3rem;color:#b9b9b9;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase}
+
+.marca{                       /* qué es: aparece con el resto */
+  position:absolute;top:1rem;left:1.2rem;
+  font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--acento);
+  opacity:0;transition:opacity .3s ease;
+}
+.pieza:hover .marca,.pieza:focus-visible .marca{opacity:1}
 
 .play{                        /* el triángulo del centro */
   position:absolute;inset:0;margin:auto;
-  width:56px;height:56px;
+  width:52px;height:52px;
   display:grid;place-items:center;
-  border:1px solid rgba(255,255,255,.7);
+  border:1px solid rgba(255,255,255,.75);
   border-radius:50%;
-  background:rgba(0,0,0,.3);
-  backdrop-filter:blur(4px);
-  transition:.3s;
+  opacity:0;transform:scale(.88);
+  transition:opacity .3s ease,transform .4s cubic-bezier(.2,.7,.2,1),background .3s;
 }
-.pieza:hover .play{background:var(--tinta);border-color:var(--tinta)}
-.play svg{width:16px;height:16px;fill:#fff;margin-left:3px;transition:.3s}
-.pieza:hover .play svg{fill:#000}
+.pieza:hover .play,.pieza:focus-visible .play{opacity:1;transform:none}
+.play svg{width:15px;height:15px;fill:#fff;margin-left:3px}
 
 .oculta{display:none}
 
-/* ═══ sobre mí + contacto ════════════════════════════════════════ */
-.sobre{
-  max-width:620px;margin:0 auto;
-  padding:0 1.5rem 7rem;
-  text-align:center;
-}
-.sobre p{font-size:1.12rem;line-height:1.75;color:#cfcfcf}
-.sobre .correo{
-  display:inline-block;margin-top:2.2rem;
-  font-size:clamp(1.1rem,3vw,1.9rem);font-weight:900;
-  letter-spacing:-.01em;
-  border-bottom:2px solid var(--acento);padding-bottom:.2rem;
-}
-.sobre .correo:hover{color:var(--acento)}
-
+/* ═══ pie ════════════════════════════════════════════════════════ */
 .pie{
   display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
   padding:2rem;
@@ -258,9 +249,12 @@ img,video{display:block;max-width:100%}
 .visor .flecha.izq{left:1.4rem;top:50%;transform:translateY(-50%)}
 .visor .flecha.der{right:1.4rem;top:50%;transform:translateY(-50%)}
 
+/* ═══ pantallas anchas ═══════════════════════════════════════════ */
+@media (min-width:1500px){ :root{--fila:240px} }
+
 /* ═══ móvil ══════════════════════════════════════════════════════ */
 @media (max-width:760px){
-  :root{--fila:150px;--hueco:5px}
+  :root{--fila:95px;--hueco:4px}
   .cabecera{padding:1rem 1.1rem;grid-template-columns:1fr auto}
   .cabecera nav{gap:1.1rem;font-size:.62rem}
   .cabecera .derecha{display:none}       /* los enlaces ya están en el pie */
@@ -268,9 +262,13 @@ img,video{display:block;max-width:100%}
   .titulo{padding:3.2rem 1.2rem 1.6rem}
   .filtros{gap:.4rem;padding-bottom:1.8rem}
   .filtros button{padding:.5rem 1rem;font-size:.62rem}
-  .velo{opacity:1;background:linear-gradient(to top,rgba(0,0,0,.8) 0%,transparent 45%)}
-  .play{width:44px;height:44px}
-  .sobre{padding-bottom:4.5rem}
+  .velo{opacity:1;padding:.7rem .8rem;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,transparent 55%)}
+  .velo h3{font-size:.72rem;transform:none}
+  .velo span{display:none}
+  .marca{opacity:1;top:.6rem;left:.8rem;font-size:.52rem}
+  .play{opacity:1;transform:none;width:36px;height:36px}
+  .pieza > img,.pieza > video{filter:brightness(.78)}
+  .rejilla{padding-bottom:3.5rem}
   .pie{flex-direction:column;text-align:center}
   .visor .flecha{top:auto;bottom:1.4rem;transform:none}
 }

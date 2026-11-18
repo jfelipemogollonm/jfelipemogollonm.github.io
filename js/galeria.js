@@ -8,9 +8,6 @@
   document.documentElement.style.setProperty('--acento', C.acento);
   $('monograma').textContent = C.monograma;
   $('oficio').textContent    = C.oficio;
-  $('textoSobre').textContent = C.sobre;
-  $('correo').textContent = C.enlaces.correo;
-  $('correo').href        = 'mailto:' + C.enlaces.correo;
   $('pieNombre').textContent = C.nombre + ' · ' + new Date().getFullYear();
   for (const [el, url] of [['aYoutube',C.enlaces.youtube],['pYoutube',C.enlaces.youtube],
                            ['aInstagram',C.enlaces.instagram],['pInstagram',C.enlaces.instagram]]) $(el).href = url;
@@ -58,7 +55,7 @@
 
     const etiqueta = {youtube:'YouTube', reel:'Reel', foto:'Foto'}[p.tipo];
     b.insertAdjacentHTML('beforeend',
-      `<span class="marca ${p.tipo === 'youtube' ? 'yt' : ''}">${etiqueta}</span>` +
+      `<span class="marca">${etiqueta}</span>` +
       (p.tipo === 'foto' ? '' : PLAY) +
       `<span class="velo"><h3>${p.titulo || ''}</h3>${p.nota ? `<span>${p.nota}</span>` : ''}</span>`);
 
