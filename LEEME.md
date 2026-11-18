@@ -70,7 +70,18 @@ ffmpeg -i foto.jpg -vf "scale='min(2000,iw)':-2" -q:v 4 media/foto/01.jpg
 Apunta a que la página entera pese menos de 5 MB. El loop de la puerta es lo que más engorda:
 si pasa de 3 MB, bájale la duración antes que la calidad.
 
-## Publicarlo gratis
+## Actualizarlo
+
+Ya está publicado en **https://jfelipemogollonm.github.io/portafolio/** (GitHub Pages, gratis).
+Cada vez que cambies algo:
+
+```bash
+cd "/Users/jfelipemogollon/Desktop/Proyecto edicion autonoma /portafolio" && git add -A && git commit -m "Nuevas piezas" && git push
+```
+
+Tarda un minuto en verse. Si no se actualiza, es la caché del navegador: recarga con ⌘⇧R.
+
+## Otras formas de publicarlo gratis
 
 **Cloudflare Pages** o **Netlify**, las dos gratis para esto y sin tarjeta:
 
