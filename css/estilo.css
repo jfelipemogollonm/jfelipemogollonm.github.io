@@ -267,7 +267,6 @@ img,video{display:block;max-width:100%}
   .velo span{display:none}
   .marca{opacity:1;top:.6rem;left:.8rem;font-size:.52rem}
   .play{opacity:1;transform:none;width:36px;height:36px}
-  .pieza > img,.pieza > video{filter:brightness(.78)}
   .rejilla{padding-bottom:3.5rem}
   .pie{flex-direction:column;text-align:center}
   .visor .flecha{top:auto;bottom:1.4rem;transform:none}
