@@ -230,6 +230,26 @@ img,video{display:block;max-width:100%}
 .pieza:hover .play,.pieza:focus-visible .play{opacity:1;transform:none}
 .play svg{width:15px;height:15px;fill:#fff;margin-left:3px}
 
+/* un reel del que solo tenemos el enlace: tarjeta sobria con el título */
+.pieza.sinPortada{
+  background:linear-gradient(145deg,#232327,#17171a);
+  border:1px solid rgba(255,255,255,.07);
+}
+.pieza.sinPortada .velo{opacity:1;justify-content:center;text-align:center}
+.pieza.sinPortada .velo h3{transform:none}
+.pieza.sinPortada .play{opacity:.5;transform:none;top:auto;bottom:1.2rem}
+.pieza.sinPortada:hover .play{opacity:1;background:var(--tinta)}
+.pieza.sinPortada:hover .play svg{fill:#000}
+
+/* el visor, cuando lo que se abre es vertical */
+.visor iframe.vertical{
+  width:min(420px,92vw);
+  aspect-ratio:9/16;
+  max-height:82vh;
+  background:#fff;
+  border-radius:4px;
+}
+
 .oculta{display:none}
 
 /* ═══ pie ════════════════════════════════════════════════════════ */

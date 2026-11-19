@@ -4,6 +4,19 @@
   const C = window.CONTENIDO;
   const $ = id => document.getElementById(id);
 
+  /* Los reels vienen de reels.js (los genera bin/reels.mjs) y se reparten
+     por la rejilla cada pocas piezas, para que no queden todos seguidos. */
+  const REELS = (window.REELS || []).map(r => ({ ...r, tipo:'reel' }));
+  const PIEZAS = (() => {
+    const base = C.piezas.slice();
+    if (!REELS.length) return base;
+    const cada = Math.max(2, Math.round(base.length / (REELS.length + 1)));
+    REELS.forEach((r, i) => base.splice(Math.min((i + 1) * cada + i, base.length), 0, r));
+    return base;
+  })();
+
+  const codigoIG = u => (String(u || '').match(/instagram\.com\/(?:reel|reels|p|tv)\/([A-Za-z0-9_-]+)/) || [])[1];
+
   /* ── textos y enlaces ──────────────────────────────────────── */
   document.documentElement.style.setProperty('--acento', C.acento);
   $('monograma').textContent = C.monograma;
@@ -15,7 +28,7 @@
 
   /* ── formato de cada pieza ─────────────────────────────────── */
   const razon = p => p.tipo === 'youtube' ? 16/9
-                   : p.tipo === 'reel'    ? 9/16
+                   : p.tipo === 'reel'    ? (p.r || 9/16)
                    : (p.proporcion || 1.5);
 
   const miniatura = p => p.tipo === 'youtube'
@@ -26,7 +39,7 @@
 
   /* ── pintar la rejilla ─────────────────────────────────────── */
   const rejilla = $('rejilla');
-  const nodos = C.piezas.map((p, i) => {
+  const nodos = PIEZAS.map((p, i) => {
     const b = document.createElement('button');
     b.className = 'pieza';
     b.style.setProperty('--r', razon(p).toFixed(4));
@@ -34,12 +47,16 @@
     b.dataset.i = i;
     b.setAttribute('aria-label', (p.titulo || 'Pieza') + ' — abrir');
 
-    if (p.tipo === 'reel') {
-      b.innerHTML = `<video src="${p.video}" muted loop playsinline preload="metadata"
-                            poster="${p.poster || ''}"></video>`;
+    if (p.tipo === 'reel' && p.archivo) {
+      b.innerHTML = `<video src="media/reels/${p.archivo}" muted loop playsinline preload="metadata"
+                            poster="${p.poster ? 'media/reels/' + p.poster : ''}"></video>`;
       const v = b.querySelector('video');
       b.addEventListener('mouseenter', () => v.play().catch(() => {}));
       b.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
+    } else if (p.tipo === 'reel') {
+      // solo tenemos el enlace: tarjeta sobria con el título
+      b.classList.add('sinPortada');
+      b.innerHTML = p.poster ? `<img src="media/reels/${p.poster}" alt="${p.titulo || ''}" loading="lazy">` : '';
     } else {
       b.innerHTML = `<img src="${miniatura(p)}" alt="${p.titulo || ''}" loading="lazy" decoding="async">`;
       if (p.tipo === 'youtube') {
@@ -68,17 +85,17 @@
   const FILTROS = [['todo','Todo'],['youtube','YouTube'],['reel','Reels'],['foto','Fotografía']];
   let activo = 'todo';
   $('filtros').innerHTML = FILTROS
-    .filter(([k]) => k === 'todo' || C.piezas.some(p => p.tipo === k))
+    .filter(([k]) => k === 'todo' || PIEZAS.some(p => p.tipo === k))
     .map(([k,t]) => `<button data-f="${k}" aria-pressed="${k==='todo'}">${t}</button>`).join('');
 
   $('filtros').addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b) return;
     activo = b.dataset.f;
     $('filtros').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
-    nodos.forEach((n, i) => n.classList.toggle('oculta', activo !== 'todo' && C.piezas[i].tipo !== activo));
+    nodos.forEach((n, i) => n.classList.toggle('oculta', activo !== 'todo' && PIEZAS[i].tipo !== activo));
   });
 
-  const visibles = () => C.piezas.map((p,i) => i).filter(i => !nodos[i].classList.contains('oculta'));
+  const visibles = () => PIEZAS.map((p,i) => i).filter(i => !nodos[i].classList.contains('oculta'));
 
   /* ── visor ─────────────────────────────────────────────────── */
   const visor = $('visor'), lienzo = $('lienzo');
@@ -86,19 +103,22 @@
 
   function abrir(i) {
     actual = i;
-    const p = C.piezas[i];
+    const p = PIEZAS[i];
     lienzo.innerHTML = '';
 
     if (p.tipo === 'youtube') {
       lienzo.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${p.id}?autoplay=1&rel=0"
         title="${p.titulo || ''}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+    } else if (p.tipo === 'reel' && p.archivo) {
+      lienzo.innerHTML = `<video src="media/reels/${p.archivo}" controls autoplay loop playsinline></video>`;
     } else if (p.tipo === 'reel') {
-      lienzo.innerHTML = `<video src="${p.video}" controls autoplay loop playsinline></video>`;
+      lienzo.innerHTML = `<iframe class="vertical" src="https://www.instagram.com/reel/${codigoIG(p.enlace)}/embed/"
+        title="${p.titulo || ''}" allowtransparency allowfullscreen></iframe>`;
     } else {
       lienzo.innerHTML = `<img src="${p.imagen}" alt="${p.titulo || ''}">`;
     }
 
-    const extra = p.tipo === 'reel' && p.enlace
+    const extra = p.enlace
       ? `<a href="${p.enlace}" target="_blank" rel="noopener">Ver en Instagram ↗</a>` : '';
     lienzo.insertAdjacentHTML('beforeend',
       `<div class="pieDeVisor"><strong>${p.titulo || ''}</strong>${p.nota ? '<span>'+p.nota+'</span>' : ''}${extra}</div>`);
