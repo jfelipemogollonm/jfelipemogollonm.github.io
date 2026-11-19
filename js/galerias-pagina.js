@@ -100,7 +100,7 @@
 
     galeria.carpetas.forEach(c => rejilla.append(tarjeta({
       href: `galerias.html?g=${galeria.slug}&c=${c.slug}`,
-      portada: `${BASE}/${galeria.slug}/${c.slug}/web/mini/${c.fotos[0].archivo}`,
+      portada: `${BASE}/${galeria.slug}/${c.slug}/web/mini/${c.portada || c.fotos[0].archivo}`,
       nombre: c.nombre,
       pie: plural(c.fotos.length, 'foto')
     })));
@@ -112,7 +112,7 @@
     $('cuenta').textContent = '';
     G.forEach(g => rejilla.append(tarjeta({
       href: `galerias.html?g=${g.slug}`,
-      portada: `${BASE}/${g.slug}/${g.carpetas[0].slug}/web/mini/${g.carpetas[0].fotos[0].archivo}`,
+      portada: `${BASE}/${g.slug}/${g.portada.carpeta}/web/mini/${g.portada.archivo}`,
       nombre: g.nombre,
       pie: `${plural(g.carpetas.length, 'carpeta')} · ${plural(totalFotos(g), 'foto')}`
     })));

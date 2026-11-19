@@ -12,9 +12,13 @@ window.CONTENIDO = {
   acento:   "#ff2a2a",                  // el color que lo tiñe todo
 
   // ── La puerta (la primera pantalla) ───────────────────────────
+  // Puede ser un video en bucle o una foto tuya. Si pones las dos, manda el
+  // video y la foto se usa mientras carga. Para dejar solo la foto, pon
+  // video: null.
   puerta: {
-    video:  "media/puerta.mp4",         // un loop tuyo, mudo, 5-10 s
-    poster: "media/poster/puerta.jpg"   // el primer fotograma, por si el video tarda
+    video:  "media/puerta.mp4",          // un loop tuyo, mudo, 5-10 s
+    imagen: null,                        // p. ej. "media/puerta/felipe.jpg"
+    poster: "media/poster/puerta.jpg"
   },
 
   // ── Enlaces ───────────────────────────────────────────────────

@@ -5,6 +5,10 @@
  *
  * Tú sueltas las fotos (del tamaño que sean, también .heic del iPhone) en
  *   media/galerias/<galeria>/<carpeta>/
+ *
+ * La portada de una galería o de una carpeta es su primera foto. Para elegir
+ * otra, deja un portada.txt al lado del nombre.txt con el nombre del archivo:
+ *   media/galerias/gsa/fall-academy/portada.txt   →   IMG_8237.jpg
  * y esto deja en web/ una copia ligera (lado largo 2000 px) que es la que
  * publica el sitio. Los originales se quedan donde están y no se suben.
  */
@@ -27,6 +31,14 @@ const titulo   = s => s.split('-').map(p => p.charAt(0).toUpperCase() + p.slice(
 function nombreDe(dir, slug) {
   const f = join(dir, 'nombre.txt');
   return existsSync(f) ? readFileSync(f, 'utf8').trim() : titulo(slug);
+}
+
+/* el archivo que manda como portada, si hay un portada.txt */
+function portadaDe(dir) {
+  const f = join(dir, 'portada.txt');
+  if (!existsSync(f)) return null;
+  const n = readFileSync(f, 'utf8').trim();
+  return n ? parse(n).name + '.jpg' : null;
 }
 
 function medidas(archivo) {
@@ -83,11 +95,20 @@ for (const g of carpetas(BASE).sort()) {
     }).filter(Boolean);
 
     if (fotos.length) {
-      grupo.carpetas.push({ slug:c, nombre:nombreDe(dirC, c), fotos });
+      const elegida = portadaDe(dirC);
+      const portada = fotos.some(f => f.archivo === elegida) ? elegida : fotos[0].archivo;
+      grupo.carpetas.push({ slug:c, nombre:nombreDe(dirC, c), portada, fotos });
       console.log(`  ${fotos.length} foto(s)`);
     }
   }
-  if (grupo.carpetas.length) galerias.push(grupo);
+  if (grupo.carpetas.length) {
+    const elegida = portadaDe(dirG);
+    const dentro = grupo.carpetas.find(c => c.fotos.some(f => f.archivo === elegida));
+    grupo.portada = dentro
+      ? { carpeta: dentro.slug, archivo: elegida }
+      : { carpeta: grupo.carpetas[0].slug, archivo: grupo.carpetas[0].portada };
+    galerias.push(grupo);
+  }
 }
 
 const salida = `/* Generado por bin/galerias.mjs — no lo edites a mano.

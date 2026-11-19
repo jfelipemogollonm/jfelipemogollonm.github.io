@@ -86,6 +86,20 @@ el sitio publica solo las copias.
 cd "/Users/jfelipemogollon/Desktop/Proyecto edicion autonoma /portafolio" && git add -A && git commit -m "Fotos de Fall Academy" && git push
 ```
 
+**La portada** de una galería o de una carpeta es su primera foto. Para elegir otra,
+deja un `portada.txt` al lado del `nombre.txt` con el nombre del archivo:
+
+```
+media/galerias/gsa/fall-academy/portada.txt   →   IMG_8237.jpg
+```
+
+**La foto de la puerta** (la primera pantalla) sale de `contenido.js`. Si quieres una foto
+tuya en vez del video, déjala en `media/puerta/` y en `contenido.js` pon:
+
+```
+puerta: { video: null, imagen: "media/puerta/felipe.jpg", poster: null }
+```
+
 **Para una galería o carpeta nueva** basta con crear la carpeta y, si quieres que el
 nombre salga bonito, un `nombre.txt` dentro con el nombre en una línea:
 

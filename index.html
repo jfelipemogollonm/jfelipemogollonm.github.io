@@ -42,15 +42,22 @@
   oficio.textContent = C.oficio;
   aplicarIdioma();
 
+  // La puerta admite un video en bucle o una foto fija. Si hay foto y no hay
+  // video, se pone la foto; si el video falla, se cae a la foto o al poster.
   const v = document.getElementById('fondo');
-  v.poster = C.puerta.poster || '';
-  v.src    = C.puerta.video;
-  v.addEventListener('error', () => {
-    if (!C.puerta.poster) return;
+  const foto = () => {
     const img = document.createElement('img');
-    img.className = 'fondo'; img.src = C.puerta.poster; img.alt = '';
+    img.className = 'fondo'; img.alt = '';
+    img.src = C.puerta.imagen || C.puerta.poster;
     v.replaceWith(img);
-  });
+  };
+  if (C.puerta.video) {
+    v.poster = C.puerta.imagen || C.puerta.poster || '';
+    v.src    = C.puerta.video;
+    v.addEventListener('error', () => { if (C.puerta.imagen || C.puerta.poster) foto(); });
+  } else if (C.puerta.imagen || C.puerta.poster) {
+    foto();
+  }
 
   aYoutube.href   = C.enlaces.youtube;
   aInstagram.href = C.enlaces.instagram;
