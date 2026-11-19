@@ -1,21 +1,34 @@
 # Portafolio
 
-Sitio estático: dos páginas, sin instalación, sin dependencias, sin cuotas.
-`index.html` es la puerta (video a pantalla completa) y `trabajo.html` la galería.
+Sitio estático, sin instalación, sin dependencias, sin cuotas. Dos partes:
+
+- **Marca personal** (`marca.html`): tu canal. Videos de YouTube y tus reels.
+- **Trabajo externo** (`galerias.html`): lo que haces para otros. GSA, Goshen College…
+
+Todo el sitio está en **español e inglés**, con el interruptor ES/EN arriba a la derecha.
+Elige solo el idioma del navegador la primera vez, y luego recuerda el que elijas.
 
 ```
 portafolio/
-├─ index.html        la puerta
-├─ trabajo.html      la galería
-├─ contenido.js      ← LO ÚNICO QUE TOCAS
+├─ index.html        la puerta: nombre y las dos partes
+├─ marca.html        marca personal
+├─ galerias.html     trabajo externo (las tres pantallas: galerías, carpetas, fotos)
+├─ contenido.js      ← tus datos y la lista de videos de YouTube
 ├─ css/estilo.css
-├─ js/galeria.js
+├─ js/
+│  ├─ idioma.js      ← los textos en español e inglés
+│  ├─ galeria.js
+│  └─ galerias-pagina.js
+├─ bin/              los dos scripts (galerias.mjs, reels.mjs)
 └─ media/
    ├─ puerta.mp4     el loop de la portada
-   ├─ poster/        el primer fotograma de ese loop
-   ├─ reels/         tus mp4 verticales
-   └─ foto/          tus jpg
+   ├─ galerias/      las fotos, por cliente y carpeta
+   └─ reels/         tus mp4 verticales
 ```
+
+**Para cambiar un texto de la interfaz** (menús, títulos de sección, botones) se edita
+`js/idioma.js`, que tiene las dos versiones una al lado de la otra. Los títulos de tus
+videos y de tus galerías no se traducen: son tuyos y salen tal cual los escribes.
 
 ## Verlo mientras trabajas
 
@@ -45,8 +58,8 @@ El orden de la lista es el orden en la pantalla. Borra, añade y reordena sin to
 ## Las galerías de fotos
 
 Aparte del trabajo suelto, el sitio tiene **galerías**: una galería contiene carpetas,
-y cada carpeta contiene fotos. Ahora mismo hay una galería **GSA** con una carpeta
-**Fall Academy**.
+y cada carpeta contiene fotos. Ahora mismo hay dos: **GSA**, con la carpeta **Fall Academy**, y **Goshen College**,
+todavía vacía (no sale en el sitio hasta que tenga fotos).
 
 Una carpeta por sesión o por evento. Para añadir fotos:
 
@@ -54,6 +67,7 @@ Una carpeta por sesión o por evento. Para añadir fotos:
 
 ```
 portafolio/media/galerias/gsa/fall-academy/
+portafolio/media/galerias/goshen-college/<lo-que-sea>/
 ```
 
 2. Ejecuta esto una vez:

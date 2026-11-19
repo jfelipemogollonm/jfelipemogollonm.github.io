@@ -23,7 +23,7 @@
   const carpeta = galeria && galeria.carpetas.find(x => x.slug === q.get('c'));
 
   const rejilla = $('rejilla');
-  const plural = (n, uno, varios) => `${n} ${n === 1 ? uno : varios}`;
+  aplicarIdioma();
   const totalFotos = g => g.carpetas.reduce((n, c) => n + c.fotos.length, 0);
 
   function vacio(texto) {
@@ -45,10 +45,10 @@
 
   /* ── nivel 3: las fotos ────────────────────────────────────── */
   if (carpeta) {
-    $('miga').innerHTML = `<a href="galerias.html">Galerías</a> / <a href="galerias.html?g=${galeria.slug}">${galeria.nombre}</a>`;
+    $('miga').innerHTML = `<a href="galerias.html">${T('externo')}</a> / <a href="galerias.html?g=${galeria.slug}">${galeria.nombre}</a>`;
     $('encabezado').textContent = carpeta.nombre;
-    $('cuenta').textContent = plural(carpeta.fotos.length, 'foto', 'fotos');
-    document.title = `${carpeta.nombre} — ${C.nombre}`;
+    $('cuenta').textContent = plural(carpeta.fotos.length, 'foto');
+    document.title = `${carpeta.nombre} — ${bonito(C.nombre)}`;
 
     const ruta = f => `${BASE}/${galeria.slug}/${carpeta.slug}/web/${f.archivo}`;
     const mini = f => `${BASE}/${galeria.slug}/${carpeta.slug}/web/mini/${f.archivo}`;
@@ -56,7 +56,7 @@
       const b = document.createElement('button');
       b.className = 'pieza';
       b.style.setProperty('--r', f.r);
-      b.setAttribute('aria-label', `Foto ${i + 1} — abrir`);
+      b.setAttribute('aria-label', `${T('foto')} ${i + 1} — ${T('abrir')}`);
       b.innerHTML = `<img src="${mini(f)}" alt="" loading="lazy" decoding="async">`;
       b.addEventListener('click', () => abrir(i));
       rejilla.append(b);
@@ -93,27 +93,29 @@
 
   /* ── nivel 2: las carpetas de una galería ──────────────────── */
   } else if (galeria) {
-    $('miga').innerHTML = `<a href="galerias.html">Galerías</a>`;
+    $('miga').innerHTML = `<a href="galerias.html">${T('externo')}</a>`;
     $('encabezado').textContent = galeria.nombre;
-    $('cuenta').textContent = plural(galeria.carpetas.length, 'carpeta', 'carpetas');
-    document.title = `${galeria.nombre} — ${C.nombre}`;
+    $('cuenta').textContent = plural(galeria.carpetas.length, 'carpeta');
+    document.title = `${galeria.nombre} — ${bonito(C.nombre)}`;
 
     galeria.carpetas.forEach(c => rejilla.append(tarjeta({
       href: `galerias.html?g=${galeria.slug}&c=${c.slug}`,
       portada: `${BASE}/${galeria.slug}/${c.slug}/web/mini/${c.fotos[0].archivo}`,
       nombre: c.nombre,
-      pie: plural(c.fotos.length, 'foto', 'fotos')
+      pie: plural(c.fotos.length, 'foto')
     })));
 
   /* ── nivel 1: todas las galerías ───────────────────────────── */
   } else {
-    $('cuenta').textContent = G.length ? plural(G.length, 'galería', 'galerías') : '';
+    $('encabezado').textContent = T('externoTitulo');
+    document.title = `${T('externoTitulo')} — ${bonito(C.nombre)}`;
+    $('cuenta').textContent = G.length ? T('externoPie') : '';
     G.forEach(g => rejilla.append(tarjeta({
       href: `galerias.html?g=${g.slug}`,
       portada: `${BASE}/${g.slug}/${g.carpetas[0].slug}/web/mini/${g.carpetas[0].fotos[0].archivo}`,
       nombre: g.nombre,
-      pie: `${plural(g.carpetas.length, 'carpeta', 'carpetas')} · ${plural(totalFotos(g), 'foto', 'fotos')}`
+      pie: `${plural(g.carpetas.length, 'carpeta')} · ${plural(totalFotos(g), 'foto')}`
     })));
-    if (!G.length) vacio('Todavía no hay fotos publicadas.');
+    if (!G.length) vacio(T('sinFotos'));
   }
 })();

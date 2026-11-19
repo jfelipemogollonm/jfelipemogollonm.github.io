@@ -18,8 +18,9 @@
 
   /* ── textos y enlaces ──────────────────────────────────────── */
   document.documentElement.style.setProperty('--acento', C.acento);
+  aplicarIdioma();
+  document.title = `${T('marcaTitulo')} — ${bonito(C.nombre)}`;
   $('monograma').textContent = C.monograma;
-  $('oficio').textContent    = C.oficio;
   $('pieNombre').textContent = C.nombre + ' · ' + new Date().getFullYear();
   for (const [el, url] of [['aYoutube',C.enlaces.youtube],['pYoutube',C.enlaces.youtube],
                            ['aInstagram',C.enlaces.instagram],['pInstagram',C.enlaces.instagram]]) $(el).href = url;
@@ -46,7 +47,7 @@
     b.style.setProperty('--r', razon(p).toFixed(4));
     b.dataset.tipo = p.tipo;
     b.dataset.i = i;
-    b.setAttribute('aria-label', (p.titulo || 'Pieza') + (soloEnlace ? ' — ver en Instagram' : ' — abrir'));
+    b.setAttribute('aria-label', (p.titulo || '') + ' — ' + (soloEnlace ? T('verReel') : T('abrir')));
 
     if (p.tipo === 'reel' && p.archivo) {
       b.innerHTML = `<video src="media/reels/${p.archivo}" muted loop playsinline preload="metadata"
@@ -71,7 +72,7 @@
       }
     }
 
-    const etiqueta = {youtube:'YouTube', reel:'Reel', foto:'Foto'}[p.tipo];
+    const etiqueta = {youtube:'YouTube', reel:'Reel', foto:T('foto')}[p.tipo];
     b.insertAdjacentHTML('beforeend',
       `<span class="marca">${etiqueta}</span>` +
       (p.tipo === 'foto' ? '' : PLAY) +
@@ -83,7 +84,7 @@
   rejilla.append(...nodos);
 
   /* ── filtros ───────────────────────────────────────────────── */
-  const FILTROS = [['todo','Todo'],['youtube','YouTube'],['reel','Reels'],['foto','Fotografía']];
+  const FILTROS = [['todo', T('todo')], ['youtube', T('youtube')], ['reel', T('reels')], ['foto', T('fotografia')]];
   let activo = 'todo';
   $('filtros').innerHTML = FILTROS
     .filter(([k]) => k === 'todo' || PIEZAS.some(p => p.tipo === k))
@@ -117,7 +118,7 @@
     }
 
     const extra = p.enlace
-      ? `<a href="${p.enlace}" target="_blank" rel="noopener">Ver en Instagram ↗</a>` : '';
+      ? `<a href="${p.enlace}" target="_blank" rel="noopener">${T('verEnInstagram')}</a>` : '';
     lienzo.insertAdjacentHTML('beforeend',
       `<div class="pieDeVisor"><strong>${p.titulo || ''}</strong>${p.nota ? '<span>'+p.nota+'</span>' : ''}${extra}</div>`);
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Galerías — Felipe Mogollón</title>
-<meta name="description" content="Galerías de fotografía.">
+<title>Trabajo externo — Felipe Mogollon</title>
+<meta name="description" content="Fotografía y video para otros: GSA, Goshen College.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&display=swap" rel="stylesheet">
@@ -14,20 +14,21 @@
 
 <header class="cabecera">
   <nav class="rotulo">
-    <a href="index.html">Inicio</a>
-    <a href="trabajo.html">Trabajo</a>
-    <a href="galerias.html">Galerías</a>
+    <a href="index.html" data-t="inicio"></a>
+    <a href="marca.html" data-t="marca"></a>
+    <a href="galerias.html" class="aqui" data-t="externo"></a>
   </nav>
   <a class="monograma" href="index.html" id="monograma"></a>
   <nav class="rotulo derecha">
     <a id="aYoutube" target="_blank" rel="noopener">YouTube</a>
     <a id="aInstagram" target="_blank" rel="noopener">Instagram</a>
+    <span class="selector" id="idioma"></span>
   </nav>
 </header>
 
 <section class="titulo">
   <p class="miga rotulo" id="miga"></p>
-  <h2 id="encabezado">Galerías</h2>
+  <h2 id="encabezado"></h2>
   <p id="cuenta"></p>
 </section>
 
@@ -38,7 +39,7 @@
   <nav>
     <a id="pYoutube" target="_blank" rel="noopener">YouTube</a>
     <a id="pInstagram" target="_blank" rel="noopener">Instagram</a>
-    <a href="#" id="arriba">Arriba ↑</a>
+    <a href="#" id="arriba" data-t="arriba"></a>
   </nav>
 </footer>
 
@@ -49,6 +50,7 @@
   <div class="lienzo" id="lienzo"></div>
 </div>
 
+<script src="js/idioma.js"></script>
 <script src="contenido.js"></script>
 <script src="galerias.js"></script>
 <script src="js/galerias-pagina.js"></script>

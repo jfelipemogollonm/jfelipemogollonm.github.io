@@ -66,11 +66,11 @@ img,video{display:block;max-width:100%}
   letter-spacing:.3em;
   text-transform:uppercase;
 }
+.puertas{
+  margin-top:2.8rem;
+  display:flex;justify-content:center;flex-wrap:wrap;gap:.8rem;
+}
 .explorar{
-  position:absolute;
-  left:50%;bottom:7vh;
-  transform:translateX(-50%);
-  z-index:2;
   display:inline-block;
   padding:.85rem 2.2rem;
   border:1px solid rgba(255,255,255,.65);
@@ -85,6 +85,24 @@ img,video{display:block;max-width:100%}
   z-index:2;display:flex;gap:1.4rem;color:var(--tenue);
 }
 .puerta .redes a:hover{color:var(--tinta)}
+
+/* el selector de idioma */
+.selector{display:inline-flex;align-items:center;gap:.4rem;color:var(--tenue)}
+.selector i{opacity:.4;font-style:normal}
+.selector button{
+  font:inherit;letter-spacing:inherit;text-transform:inherit;
+  background:none;border:0;padding:.1rem;cursor:pointer;color:var(--tenue);
+  transition:color .2s;
+}
+.selector button:hover{color:var(--tinta)}
+.selector button[aria-pressed="true"]{color:var(--acento)}
+.puerta .selector{position:absolute;top:2rem;right:2rem;z-index:3}
+
+/* la página en la que estás, marcada en el menú */
+.cabecera nav a.aqui{color:var(--tinta)}
+.cabecera nav a.aqui::after{
+  content:"";display:block;height:1px;margin-top:.3rem;background:var(--acento);
+}
 
 /* ═══ cabecera de la galería ═════════════════════════════════════ */
 .cabecera{
