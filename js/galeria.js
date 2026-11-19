@@ -32,7 +32,7 @@
 
   const miniatura = p => p.tipo === 'youtube'
     ? `https://i.ytimg.com/vi/${p.id}/maxresdefault.jpg`
-    : p.imagen;
+    : (p.mini || p.imagen);
 
   const PLAY = '<span class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>';
 
