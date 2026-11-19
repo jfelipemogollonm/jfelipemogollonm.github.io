@@ -87,7 +87,7 @@ window.GALERIAS = [
     ],
     "portada": {
       "carpeta": "fall-academy",
-      "archivo": "IMG_8033.jpg"
+      "archivo": "IMG_8371.jpg"
     }
   }
 ];
