@@ -51,12 +51,13 @@
     document.title = `${carpeta.nombre} — ${C.nombre}`;
 
     const ruta = f => `${BASE}/${galeria.slug}/${carpeta.slug}/web/${f.archivo}`;
+    const mini = f => `${BASE}/${galeria.slug}/${carpeta.slug}/web/mini/${f.archivo}`;
     carpeta.fotos.forEach((f, i) => {
       const b = document.createElement('button');
       b.className = 'pieza';
       b.style.setProperty('--r', f.r);
       b.setAttribute('aria-label', `Foto ${i + 1} — abrir`);
-      b.innerHTML = `<img src="${ruta(f)}" alt="" loading="lazy" decoding="async">`;
+      b.innerHTML = `<img src="${mini(f)}" alt="" loading="lazy" decoding="async">`;
       b.addEventListener('click', () => abrir(i));
       rejilla.append(b);
     });
@@ -99,7 +100,7 @@
 
     galeria.carpetas.forEach(c => rejilla.append(tarjeta({
       href: `galerias.html?g=${galeria.slug}&c=${c.slug}`,
-      portada: `${BASE}/${galeria.slug}/${c.slug}/web/${c.fotos[0].archivo}`,
+      portada: `${BASE}/${galeria.slug}/${c.slug}/web/mini/${c.fotos[0].archivo}`,
       nombre: c.nombre,
       pie: plural(c.fotos.length, 'foto', 'fotos')
     })));
@@ -109,7 +110,7 @@
     $('cuenta').textContent = G.length ? plural(G.length, 'galería', 'galerías') : '';
     G.forEach(g => rejilla.append(tarjeta({
       href: `galerias.html?g=${g.slug}`,
-      portada: `${BASE}/${g.slug}/${g.carpetas[0].slug}/web/${g.carpetas[0].fotos[0].archivo}`,
+      portada: `${BASE}/${g.slug}/${g.carpetas[0].slug}/web/mini/${g.carpetas[0].fotos[0].archivo}`,
       nombre: g.nombre,
       pie: `${plural(g.carpetas.length, 'carpeta', 'carpetas')} · ${plural(totalFotos(g), 'foto', 'fotos')}`
     })));

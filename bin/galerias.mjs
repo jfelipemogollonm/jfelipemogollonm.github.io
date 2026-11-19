@@ -16,8 +16,10 @@ import { fileURLToPath } from 'node:url';
 const RAIZ   = fileURLToPath(new URL('../', import.meta.url));
 const BASE   = join(RAIZ, 'media/galerias');
 const FOTOS  = /\.(jpe?g|png|heic|heif|webp|tiff?)$/i;
-const LADO   = 2000;     // lado largo de las copias web
-const CALIDAD= 80;
+const LADO   = 2000;     // lado largo de la copia que se ve en el visor
+const CALIDAD= 78;
+const MINI   = 800;      // lado largo de la miniatura de la rejilla
+const CAL_MINI = 68;
 
 const carpetas = d => existsSync(d) ? readdirSync(d, { withFileTypes:true }).filter(e => e.isDirectory()).map(e => e.name) : [];
 const titulo   = s => s.split('-').map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(' ');
@@ -34,26 +36,30 @@ function medidas(archivo) {
   return (w && h) ? { w, h } : null;
 }
 
-function copiaWeb(origen, destino) {
+function asegura(origen, destino, lado, calidad, permitirCopia) {
   // se rehace solo si falta o si el original es más nuevo
-  if (existsSync(destino) && statSync(destino).mtimeMs >= statSync(origen).mtimeMs) return;
+  if (existsSync(destino) && statSync(destino).mtimeMs >= statSync(origen).mtimeMs) return false;
 
   const m = medidas(origen);
-  const grande = !m || Math.max(m.w, m.h) > LADO;
-  const yaEsJpg = /\.jpe?g$/i.test(origen);
+  const grande = !m || Math.max(m.w, m.h) > lado;
 
   // Si ya viene lista (jpg, dentro de medida y ligera), se copia tal cual:
   // así una foto que ya editaste y exportaste no se vuelve a comprimir.
-  if (!grande && yaEsJpg && statSync(origen).size <= 1_500_000) {
+  if (permitirCopia && !grande && /\.jpe?g$/i.test(origen) && statSync(origen).size <= 1_500_000) {
     copyFileSync(origen, destino);
-    process.stdout.write(`  · ${parse(destino).base} (tal cual)\n`);
-    return;
+    return true;
   }
 
-  const args = ['-s','format','jpeg','-s','formatOptions',String(CALIDAD)];
-  if (grande) args.push('-Z', String(LADO));   // nunca se agranda una foto pequeña
+  const args = ['-s','format','jpeg','-s','formatOptions',String(calidad)];
+  if (grande) args.push('-Z', String(lado));   // nunca se agranda una foto pequeña
   execFileSync('sips', [...args, origen, '--out', destino], { stdio:'ignore' });
-  process.stdout.write(`  · ${parse(destino).base}${grande ? '' : ' (recomprimida)'}\n`);
+  return true;
+}
+
+function copiaWeb(origen, dirW, nombre) {
+  const hecho = asegura(origen, join(dirW, nombre), LADO, CALIDAD, true)
+              | asegura(origen, join(dirW, 'mini', nombre), MINI, CAL_MINI, false);
+  if (hecho) process.stdout.write(`  · ${nombre}\n`);
 }
 
 const galerias = [];
@@ -68,8 +74,8 @@ for (const g of carpetas(BASE).sort()) {
     if (!origenes.length && !existsSync(dirW)) continue;
 
     console.log(`${grupo.nombre} / ${nombreDe(dirC, c)}`);
-    mkdirSync(dirW, { recursive:true });
-    for (const n of origenes) copiaWeb(join(dirC, n), join(dirW, parse(n).name + '.jpg'));
+    mkdirSync(join(dirW, 'mini'), { recursive:true });
+    for (const n of origenes) copiaWeb(join(dirC, n), dirW, parse(n).name + '.jpg');
 
     const fotos = readdirSync(dirW).filter(n => /\.jpe?g$/i.test(n)).sort().map(n => {
       const m = medidas(join(dirW, n));
