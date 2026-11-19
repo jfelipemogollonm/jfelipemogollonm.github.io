@@ -8,7 +8,7 @@
  * y esto deja en web/ una copia ligera (lado largo 2000 px) que es la que
  * publica el sitio. Los originales se quedan donde están y no se suben.
  */
-import { readdirSync, existsSync, statSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readdirSync, existsSync, statSync, readFileSync, writeFileSync, mkdirSync, copyFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join, parse } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -37,9 +37,23 @@ function medidas(archivo) {
 function copiaWeb(origen, destino) {
   // se rehace solo si falta o si el original es más nuevo
   if (existsSync(destino) && statSync(destino).mtimeMs >= statSync(origen).mtimeMs) return;
-  execFileSync('sips', ['-s','format','jpeg','-s','formatOptions',String(CALIDAD),
-                        '-Z',String(LADO), origen, '--out', destino], { stdio:'ignore' });
-  process.stdout.write(`  · ${parse(destino).base}\n`);
+
+  const m = medidas(origen);
+  const grande = !m || Math.max(m.w, m.h) > LADO;
+  const yaEsJpg = /\.jpe?g$/i.test(origen);
+
+  // Si ya viene lista (jpg, dentro de medida y ligera), se copia tal cual:
+  // así una foto que ya editaste y exportaste no se vuelve a comprimir.
+  if (!grande && yaEsJpg && statSync(origen).size <= 1_500_000) {
+    copyFileSync(origen, destino);
+    process.stdout.write(`  · ${parse(destino).base} (tal cual)\n`);
+    return;
+  }
+
+  const args = ['-s','format','jpeg','-s','formatOptions',String(CALIDAD)];
+  if (grande) args.push('-Z', String(LADO));   // nunca se agranda una foto pequeña
+  execFileSync('sips', [...args, origen, '--out', destino], { stdio:'ignore' });
+  process.stdout.write(`  · ${parse(destino).base}${grande ? '' : ' (recomprimida)'}\n`);
 }
 
 const galerias = [];
