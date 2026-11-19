@@ -15,7 +15,6 @@
     return base;
   })();
 
-  const codigoIG = u => (String(u || '').match(/instagram\.com\/(?:reel|reels|p|tv)\/([A-Za-z0-9_-]+)/) || [])[1];
 
   /* ── textos y enlaces ──────────────────────────────────────── */
   document.documentElement.style.setProperty('--acento', C.acento);
@@ -40,12 +39,14 @@
   /* ── pintar la rejilla ─────────────────────────────────────── */
   const rejilla = $('rejilla');
   const nodos = PIEZAS.map((p, i) => {
-    const b = document.createElement('button');
+    const soloEnlace = p.tipo === 'reel' && !p.archivo;
+    const b = document.createElement(soloEnlace ? 'a' : 'button');
     b.className = 'pieza';
+    if (soloEnlace) { b.href = p.enlace; b.target = '_blank'; b.rel = 'noopener'; }
     b.style.setProperty('--r', razon(p).toFixed(4));
     b.dataset.tipo = p.tipo;
     b.dataset.i = i;
-    b.setAttribute('aria-label', (p.titulo || 'Pieza') + ' — abrir');
+    b.setAttribute('aria-label', (p.titulo || 'Pieza') + (soloEnlace ? ' — ver en Instagram' : ' — abrir'));
 
     if (p.tipo === 'reel' && p.archivo) {
       b.innerHTML = `<video src="media/reels/${p.archivo}" muted loop playsinline preload="metadata"
@@ -76,7 +77,7 @@
       (p.tipo === 'foto' ? '' : PLAY) +
       `<span class="velo"><h3>${p.titulo || ''}</h3>${p.nota ? `<span>${p.nota}</span>` : ''}</span>`);
 
-    b.addEventListener('click', () => abrir(i));
+    if (!soloEnlace) b.addEventListener('click', () => abrir(i));
     return b;
   });
   rejilla.append(...nodos);
@@ -111,9 +112,6 @@
         title="${p.titulo || ''}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
     } else if (p.tipo === 'reel' && p.archivo) {
       lienzo.innerHTML = `<video src="media/reels/${p.archivo}" controls autoplay loop playsinline></video>`;
-    } else if (p.tipo === 'reel') {
-      lienzo.innerHTML = `<iframe class="vertical" src="https://www.instagram.com/reel/${codigoIG(p.enlace)}/embed/"
-        title="${p.titulo || ''}" allowtransparency allowfullscreen></iframe>`;
     } else {
       lienzo.innerHTML = `<img src="${p.imagen}" alt="${p.titulo || ''}">`;
     }

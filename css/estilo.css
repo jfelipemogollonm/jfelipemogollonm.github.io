@@ -238,6 +238,8 @@ img,video{display:block;max-width:100%}
 .pieza.sinPortada .velo{opacity:1;justify-content:center;text-align:center}
 .pieza.sinPortada .velo h3{transform:none}
 .pieza.sinPortada .play{opacity:.5;transform:none;top:auto;bottom:1.2rem}
+.pieza.sinPortada .marca{opacity:1;color:var(--acento)}
+.pieza.sinPortada .velo h3{font-size:.85rem;padding:0 .6rem}
 .pieza.sinPortada:hover .play{opacity:1;background:var(--tinta)}
 .pieza.sinPortada:hover .play svg{fill:#000}
 

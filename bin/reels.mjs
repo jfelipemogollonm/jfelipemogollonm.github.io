@@ -12,6 +12,11 @@
  * Si quieres enlazar al reel de Instagram, deja al lado un archivo con el mismo
  * nombre y extensión .url que contenga el enlace:
  *   media/reels/originales/Partido en Goshen.url
+ *
+ * Y si de un reel solo tienes el enlace, ponlo en media/reels/enlaces.txt,
+ * uno por línea, con el título detrás de una barra:
+ *   https://www.instagram.com/reel/XXXXXXXXXXX/ | Partido en Goshen
+ * Si además dejas una portada en media/reels/poster/<mismo-título>.jpg, se usa.
  */
 import { readdirSync, existsSync, statSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
@@ -66,6 +71,28 @@ for (const n of readdirSync(FUENTE).filter(x => VIDEOS.test(x)).sort()) {
     enlace:  existsSync(url) ? readFileSync(url, 'utf8').trim() : null,
     r: m ? +(m.w / m.h).toFixed(4) : 0.5625
   });
+}
+
+/* ── los que solo tienen enlace ─────────────────────────────── */
+const lista = join(BASE, 'enlaces.txt');
+if (existsSync(lista)) {
+  for (const linea of readFileSync(lista, 'utf8').split('\n')) {
+    const limpia = linea.trim();
+    if (!limpia || limpia.startsWith('#')) continue;
+    const [enlace, titulo] = limpia.split('|').map(x => x.trim());
+    if (!/^https?:\/\//.test(enlace)) continue;
+    const slug = babosa(titulo || enlace.split('/').filter(Boolean).pop());
+    if (reels.some(r => r.enlace === enlace)) continue;      // ya está como archivo
+    const portada = join(BASE, 'poster', slug + '.jpg');
+    reels.push({
+      archivo: null,
+      poster:  existsSync(portada) ? 'poster/' + slug + '.jpg' : null,
+      titulo:  titulo || 'Reel',
+      enlace,
+      r: 0.5625
+    });
+    console.log(`· ${titulo || enlace} (solo enlace)`);
+  }
 }
 
 writeFileSync(join(RAIZ, 'reels.js'),
