@@ -109,7 +109,7 @@
   } else {
     $('encabezado').textContent = T('externoTitulo');
     document.title = `${T('externoTitulo')} — ${bonito(C.nombre)}`;
-    $('cuenta').textContent = G.length ? T('externoPie') : '';
+    $('cuenta').textContent = '';
     G.forEach(g => rejilla.append(tarjeta({
       href: `galerias.html?g=${g.slug}`,
       portada: `${BASE}/${g.slug}/${g.carpetas[0].slug}/web/mini/${g.carpetas[0].fotos[0].archivo}`,
