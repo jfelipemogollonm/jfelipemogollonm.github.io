@@ -114,7 +114,9 @@ si pasa de 3 MB, bájale la duración antes que la calidad.
 
 ## Actualizarlo
 
-Ya está publicado en **https://jfelipemogollonm.github.io/portafolio/** (GitHub Pages, gratis).
+Ya está publicado en **https://jfelipemogollonm.github.io** (GitHub Pages, gratis).
+El repositorio se llama `jfelipemogollonm.github.io`: ese nombre es lo que hace que la
+dirección no lleve nada detrás.
 Cada vez que cambies algo:
 
 ```bash
@@ -131,8 +133,7 @@ Tarda un minuto en verse. Si no se actualiza, es la caché del navegador: recarg
 2. Arrastra la carpeta `portafolio` entera.
 3. Te da una dirección tipo `tunombre.netlify.app` al momento.
 
-Si prefieres **GitHub Pages**: sube la carpeta a un repo, Settings → Pages → Deploy from branch →
-`main` / `root`. Queda en `tuusuario.github.io/portafolio`.
+(Es lo que ya usa el sitio, así que esto solo te sirve si algún día quieres moverlo.)
 
 Lo único que cuesta dinero es el dominio propio (`felipemogollon.com`, unos 12 €/año en
 Namecheap o Cloudflare). El subdominio gratis funciona igual de bien para empezar.
