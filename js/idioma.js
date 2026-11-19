@@ -5,9 +5,9 @@
     es: {
       inicio:        'Inicio',
       marca:         'Marca personal',
-      externo:       'Trabajo externo',
+      externo:       'Clientes',
       marcaTitulo:   'Marca personal',
-      externoTitulo: 'Trabajo externo',
+      externoTitulo: 'Clientes',
       todo:          'Todo',
       youtube:       'YouTube',
       reels:         'Reels',
