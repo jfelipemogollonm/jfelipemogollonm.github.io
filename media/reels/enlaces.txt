@@ -1,5 +1,5 @@
-# Reels de los que solo tenemos el enlace.
+# Si de un reel solo tienes el enlace (sin el mp4), ponlo aquí.
 # Uno por línea:   <enlace de Instagram> | <título>
-# Ejemplo:
-#   https://www.instagram.com/reel/XXXXXXXXXXX/ | Partido en Goshen
-https://www.instagram.com/reel/DL32CetszrY/ | Reel
+#
+# Pero lo normal es no usar este archivo: suelta los mp4 en
+# media/reels/originales/ y ejecuta `node bin/reels.mjs`.

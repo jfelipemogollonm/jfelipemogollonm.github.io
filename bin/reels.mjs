@@ -9,8 +9,9 @@
  * los registra. Los originales no se suben.
  *
  * El nombre del archivo es el título: «Partido en Goshen.mov» → «Partido en Goshen».
- * Si quieres enlazar al reel de Instagram, deja al lado un archivo con el mismo
- * nombre y extensión .url que contenga el enlace:
+ * El botón «Ver en Instagram» lleva a tu perfil. Si quieres que un reel lleve
+ * a su publicación concreta, deja al lado un archivo con el mismo nombre y
+ * extensión .url que contenga el enlace:
  *   media/reels/originales/Partido en Goshen.url
  *
  * Y si de un reel solo tienes el enlace, ponlo en media/reels/enlaces.txt,
@@ -29,6 +30,12 @@ const FUENTE = join(BASE, 'originales');
 const VIDEOS = /\.(mp4|mov|m4v|webm)$/i;
 const ANCHO  = 1080;   // ancho máximo de la copia web
 const CRF    = 30;
+
+/* el perfil al que lleva un reel que no trae su propio enlace */
+const PERFIL = (() => {
+  const txt = readFileSync(join(RAIZ, 'contenido.js'), 'utf8');
+  return (txt.match(/instagram:\s*"([^"]+)"/) || [])[1] || 'https://www.instagram.com/';
+})();
 
 const babosa = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')
                      .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
@@ -68,7 +75,8 @@ for (const n of readdirSync(FUENTE).filter(x => VIDEOS.test(x)).sort()) {
     archivo: slug + '.mp4',
     poster:  'poster/' + slug + '.jpg',
     titulo:  base,
-    enlace:  existsSync(url) ? readFileSync(url, 'utf8').trim() : null,
+    // sin un .url al lado, el enlace va a tu perfil
+    enlace:  existsSync(url) ? readFileSync(url, 'utf8').trim() : PERFIL,
     r: m ? +(m.w / m.h).toFixed(4) : 0.5625
   });
 }
