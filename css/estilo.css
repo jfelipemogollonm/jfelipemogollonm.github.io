@@ -348,9 +348,19 @@ img,video{display:block;max-width:100%}
   .pie{flex-direction:column;text-align:center}
   .visor .flecha{top:auto;bottom:1.4rem;transform:none}
   .puerta .redes{right:1.2rem;gap:1rem}
-  .puerta::after{background:                 /* en vertical la foto tapa más: oscurece un poco más */
-    linear-gradient(to right,rgba(0,0,0,.72) 0%,rgba(0,0,0,.45) 60%,rgba(0,0,0,.2) 100%),
-    linear-gradient(to bottom,rgba(0,0,0,.45),transparent 28%,transparent 58%,rgba(0,0,0,.6))}
+}
+
+/* En el móvil de pie la puerta se queda como estaba: el texto abajo, a todo lo
+   ancho. La columna de la izquierda es para pantallas anchas. */
+@media (max-width:760px) and (orientation:portrait){
+  .puerta{place-items:end start}
+  .puerta .centro{
+    width:auto;min-width:0;max-width:94vw;
+    margin-left:0;padding:0 1.2rem 5.2rem;
+  }
+  .puerta::after{background:
+    linear-gradient(to top right,rgba(0,0,0,.82) 0%,rgba(0,0,0,.35) 45%,transparent 72%),
+    linear-gradient(to bottom,rgba(0,0,0,.5),transparent 28%,transparent 55%,rgba(0,0,0,.6))}
 }
 
 @media (prefers-reduced-motion:reduce){
