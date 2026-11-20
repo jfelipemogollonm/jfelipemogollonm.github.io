@@ -63,6 +63,82 @@ window.GALERIAS = [
             "r": 0.6665
           },
           {
+            "archivo": "IMG_8102.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8103.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8109.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8145.jpg",
+            "r": 1.5004
+          },
+          {
+            "archivo": "IMG_8146.jpg",
+            "r": 1.5004
+          },
+          {
+            "archivo": "IMG_8147.jpg",
+            "r": 1.5004
+          },
+          {
+            "archivo": "IMG_8150.jpg",
+            "r": 1.5004
+          },
+          {
+            "archivo": "IMG_8151.jpg",
+            "r": 1.5004
+          },
+          {
+            "archivo": "IMG_8174.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8185.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8188.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8189.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8190.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8191.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8192.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8204.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8206.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8207.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8218.jpg",
+            "r": 0.6665
+          },
+          {
             "archivo": "IMG_8225.jpg",
             "r": 0.6665
           },
@@ -71,7 +147,27 @@ window.GALERIAS = [
             "r": 0.6665
           },
           {
+            "archivo": "IMG_8234.jpg",
+            "r": 0.6665
+          },
+          {
             "archivo": "IMG_8237.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8250.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8255.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8256.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8257.jpg",
             "r": 0.6665
           },
           {
@@ -79,7 +175,39 @@ window.GALERIAS = [
             "r": 1.5004
           },
           {
+            "archivo": "IMG_8322.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8334.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8336.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8348.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8369.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8370.jpg",
+            "r": 0.6665
+          },
+          {
             "archivo": "IMG_8371.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8374.jpg",
+            "r": 0.6665
+          },
+          {
+            "archivo": "IMG_8375.jpg",
             "r": 0.6665
           }
         ]
