@@ -33,7 +33,7 @@ img,video{display:block;max-width:100%}
   position:relative;
   height:100svh;
   display:grid;
-  place-items:end start;          /* el texto abajo a la izquierda: deja la cara libre */
+  place-items:center start;       /* el texto en una columna a la izquierda: deja la cara libre */
   overflow:hidden;
 }
 .puerta video,.puerta img.fondo{
@@ -46,17 +46,20 @@ img,video{display:block;max-width:100%}
   content:"";
   position:absolute;inset:0;
   background:
-    linear-gradient(to top right,rgba(0,0,0,.82) 0%,rgba(0,0,0,.35) 45%,transparent 72%),
-    linear-gradient(to bottom,rgba(0,0,0,.5),transparent 28%,transparent 55%,rgba(0,0,0,.6));
+    linear-gradient(to right,rgba(0,0,0,.78) 0%,rgba(0,0,0,.52) 30%,rgba(0,0,0,.18) 58%,transparent 78%),
+    linear-gradient(to bottom,rgba(0,0,0,.45),transparent 26%,transparent 62%,rgba(0,0,0,.55));
   z-index:1;
 }
 .puerta .centro{
   position:relative;z-index:2;text-align:left;
-  padding:0 clamp(24px,6vw,96px) clamp(76px,13vh,124px);
-  max-width:min(920px,94vw);
+  /* una columna estrecha pegada a la izquierda; el resto de la foto queda libre */
+  width:min(34vw,560px);
+  min-width:min(300px,86vw);
+  margin-left:clamp(20px,5vw,96px);
+  padding:0;
 }
 .puerta h1{
-  font-size:clamp(2rem,7.5vw,5.6rem);
+  font-size:clamp(2rem,6.4vw,5.5rem);   /* acompaña al ancho de la columna */
   font-weight:900;
   letter-spacing:-.01em;
   line-height:.95;
@@ -344,8 +347,10 @@ img,video{display:block;max-width:100%}
   .rejilla{padding-bottom:3.5rem}
   .pie{flex-direction:column;text-align:center}
   .visor .flecha{top:auto;bottom:1.4rem;transform:none}
-  .puerta .centro{padding:0 1.2rem 5.2rem}
   .puerta .redes{right:1.2rem;gap:1rem}
+  .puerta::after{background:                 /* en vertical la foto tapa más: oscurece un poco más */
+    linear-gradient(to right,rgba(0,0,0,.72) 0%,rgba(0,0,0,.45) 60%,rgba(0,0,0,.2) 100%),
+    linear-gradient(to bottom,rgba(0,0,0,.45),transparent 28%,transparent 58%,rgba(0,0,0,.6))}
 }
 
 @media (prefers-reduced-motion:reduce){
