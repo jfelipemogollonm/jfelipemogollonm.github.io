@@ -139,23 +139,7 @@ window.GALERIAS = [
             "r": 1
           },
           {
-            "archivo": "APC_2136.jpg",
-            "r": 0.5625
-          },
-          {
-            "archivo": "APC_2137.jpg",
-            "r": 0.5625
-          },
-          {
             "archivo": "APC_2138.jpg",
-            "r": 0.5625
-          },
-          {
-            "archivo": "APC_2139.jpg",
-            "r": 0.5625
-          },
-          {
-            "archivo": "APC_2140.jpg",
             "r": 0.5625
           }
         ]

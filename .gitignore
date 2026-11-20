@@ -13,3 +13,6 @@ media/galerias/*/*/*.tiff
 
 # el original de la foto de la puerta (pesa demasiado para el repo)
 media/puerta/originales/
+
+# fotos que descartaste de una galería (se quedan en tu disco, no se publican)
+media/galerias/*/*/descartadas/
