@@ -10,3 +10,6 @@ media/galerias/*/*/*.heif
 media/galerias/*/*/*.webp
 media/galerias/*/*/*.tif
 media/galerias/*/*/*.tiff
+
+# el original de la foto de la puerta (pesa demasiado para el repo)
+media/puerta/originales/

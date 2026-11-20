@@ -16,9 +16,9 @@ window.CONTENIDO = {
   // video y la foto se usa mientras carga. Para dejar solo la foto, pon
   // video: null.
   puerta: {
-    video:  "media/puerta.mp4",          // un loop tuyo, mudo, 5-10 s
-    imagen: null,                        // p. ej. "media/puerta/felipe.jpg"
-    poster: "media/poster/puerta.jpg"
+    video:  null,                        // un loop tuyo, mudo, 5-10 s
+    imagen: "media/puerta/felipe.jpg",   // o una foto tuya
+    poster: null
   },
 
   // ── Enlaces ───────────────────────────────────────────────────

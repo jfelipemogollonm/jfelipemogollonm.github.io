@@ -2,6 +2,171 @@
    Para cambiar el nombre de una galería o carpeta, edita su nombre.txt. */
 window.GALERIAS = [
   {
+    "slug": "goshen-college",
+    "nombre": "Goshen College",
+    "carpetas": [
+      {
+        "slug": "fotos",
+        "nombre": "Fotos",
+        "portada": "APC_2002.jpg",
+        "fotos": [
+          {
+            "archivo": "APC_2002.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2003.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2004.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2008.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2010.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2011.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2012.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2014.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2025.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2033.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2035.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2037.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2038.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2039.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2045.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2046.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2063.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2064.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2066.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2067.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2068.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2069.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2070.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2072.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2075.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2090.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2098.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2100.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2106.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2109.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2111.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2129.jpg",
+            "r": 1
+          },
+          {
+            "archivo": "APC_2136.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2137.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2138.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2139.jpg",
+            "r": 0.5625
+          },
+          {
+            "archivo": "APC_2140.jpg",
+            "r": 0.5625
+          }
+        ]
+      }
+    ],
+    "portada": {
+      "carpeta": "fotos",
+      "archivo": "APC_2002.jpg"
+    }
+  },
+  {
     "slug": "gsa",
     "nombre": "GSA",
     "carpetas": [
