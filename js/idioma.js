@@ -24,9 +24,9 @@
     en: {
       inicio:        'Home',
       marca:         'Personal brand',
-      externo:       'Client work',
+      externo:       'Clients',
       marcaTitulo:   'Personal brand',
-      externoTitulo: 'Client work',
+      externoTitulo: 'Clients',
       todo:          'All',
       youtube:       'YouTube',
       reels:         'Reels',
