@@ -8,7 +8,7 @@ window.GALERIAS = [
       {
         "slug": "fall-academy",
         "nombre": "Fall Academy",
-        "portada": "IMG_8033.jpg",
+        "portada": "IMG_8150.jpg",
         "fotos": [
           {
             "archivo": "IMG_8033.jpg",
@@ -215,7 +215,7 @@ window.GALERIAS = [
     ],
     "portada": {
       "carpeta": "fall-academy",
-      "archivo": "IMG_8043.jpg"
+      "archivo": "IMG_8150.jpg"
     }
   }
 ];
